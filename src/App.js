@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Formulario, Label, GrupoInput, Input, LeyendaError, IconoValidacion, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError } from './elementos/Formularios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Formulario action=''>
+        <div>
+          <Label htmlFor='nombre'>Usuario</Label>
+          <GrupoInput>
+            <Input type="text" placeholder='Usuario' id='nombre' />
+            <IconoValidacion icon={faCheckCircle} />
+          </GrupoInput>
+          <LeyendaError>Leyenda</LeyendaError>
+        </div>
+
+        <ContenedorTerminos>
+          <Label>
+            <input type="checkbox" name="terminos" id="terminos" />
+            Acepto los Terminos y Condiciones
+          </Label>
+        </ContenedorTerminos>
+
+        <MensajeError>
+          <p>
+            <FontAwesomeIcon icon={faExclamationTriangle} />
+            <b>Error:</b>Por Favor rellene el Formulario Correctamente
+          </p>
+        </MensajeError>
+
+        <ContenedorBotonCentrado>
+          <Boton type='submit'>
+            Enviar
+          </Boton>
+          <MensajeExito>Formulario enviado correctamente</MensajeExito>
+        </ContenedorBotonCentrado>
+
+      </Formulario>
+    </main>
   );
 }
+
+
 
 export default App;
