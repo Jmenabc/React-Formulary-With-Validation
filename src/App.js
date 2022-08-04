@@ -1,20 +1,33 @@
 import React from 'react';
-import { Formulario, Label, GrupoInput, Input, LeyendaError, IconoValidacion, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError } from './elementos/Formularios';
+import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError } from './elementos/Formularios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import ComponenteInput from './componentes/Input';
 
 const App = () => {
   return (
     <main>
       <Formulario action=''>
-        <div>
-          <Label htmlFor='nombre'>Usuario</Label>
-          <GrupoInput>
-            <Input type="text" placeholder='Usuario' id='nombre' />
-            <IconoValidacion icon={faCheckCircle} />
-          </GrupoInput>
-          <LeyendaError>Leyenda</LeyendaError>
-        </div>
+        <ComponenteInput
+          type="text"
+          label="Usuario"
+          placeholder="Usuario"
+          name="usuario"
+          errorLeyend="El usuario tiene que ser de 4-16 digitos y solo puede contener numeros, letras y guion bajo"
+          regularExpresion=""
+        />
+
+        <ComponenteInput
+          type="password"
+          label="Contraseña"
+          placeholder="Pon aqui tu contraseña"
+          name="password"
+          errorLeyend="La contraseña tiene que ser de 4-16 digitos y solo puede contener numeros, letras y guion bajo"
+          regularExpresion=""
+        />
+
+
+
 
         <ContenedorTerminos>
           <Label>
@@ -23,12 +36,12 @@ const App = () => {
           </Label>
         </ContenedorTerminos>
 
-        <MensajeError>
+        {false && <MensajeError>
           <p>
             <FontAwesomeIcon icon={faExclamationTriangle} />
             <b>Error:</b>Por Favor rellene el Formulario Correctamente
           </p>
-        </MensajeError>
+        </MensajeError>}
 
         <ContenedorBotonCentrado>
           <Boton type='submit'>
