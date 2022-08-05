@@ -1,38 +1,42 @@
 import React from "react";
 import { Input, Label, GrupoInput, LeyendaError, IconoValidacion } from './../elementos/Formularios';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const ComponenteInput = ({ estado, cambiarEstado, label, placeholder, type, name, errorLeyend, regularExpresion }) => {
-     const myOnChange = (e) => {
-         cambiarEstado({...estado, campo: e.target.value});
-     }
+    const myOnChange = (e) => {
+        cambiarEstado({ ...estado, campo: e.target.value });
+    }
 
-     const validacion = () => {
-         if(regularExpresion) {
-             if(regularExpresion.test(estado.campo)) {
-                 console.log('input correcto')
-             } else {
-                 console.log('input no valido')
-             }
-         }
-     }
-    
+    const validacion = () => {
+        if (regularExpresion) {
+            if (regularExpresion.test(estado.campo)) {
+                cambiarEstado({ ...estado, valido: 'true' });
+            } else {
+                cambiarEstado({ ...estado, valido: 'false' });
+            }
+        }
+    }
+
     return (
         <div>
-            <Label htmlFor={name}>{label}</Label>
+            <Label htmlFor={name} valido={estado.valido}>{label}</Label>
             <GrupoInput>
                 <Input
                     type={type}
                     placeholder={placeholder}
                     id={name}
-                    // value={estado.campo}
-                     onChange={myOnChange}
-                     onKeyUp={validacion}
-                     onBlur={validacion}
+                    value={estado.campo}
+                    onChange={myOnChange}
+                    onKeyUp={validacion}
+                    onBlur={validacion}
+                    valido={estado.valido}
                 />
-                <IconoValidacion icon={faCheckCircle} />
+                <IconoValidacion
+                    icon={estado.valido === 'true' ? faCheckCircle : faTimesCircle}
+                    valido={estado.valido}
+                />
             </GrupoInput>
-            <LeyendaError>{errorLeyend}</LeyendaError>
+            <LeyendaError valido={estado.valido}>{errorLeyend}</LeyendaError>
         </div>
     );
 }

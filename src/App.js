@@ -19,11 +19,11 @@ const App = () => {
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{7,14}$/ // 7 a 14 numeros.
   }
-  
+
   return (
     <main>
       <Formulario action=''>
-        
+
         <ComponenteInput
           estado={usuario}
           cambiarEstado={cambiarUsuario}
@@ -32,16 +32,50 @@ const App = () => {
           placeholder="Usuario"
           name="usuario"
           errorLeyend="El usuario tiene que ser de 4-16 digitos y solo puede contener numeros, letras y guion bajo"
-          regularExpresion=""
+          regularExpresion={expresiones.usuario}
         />
 
         <ComponenteInput
+          estado={password}
+          cambiarEstado={cambiarPassword}
           type="password"
           label="Contraseña"
-          placeholder="Pon aqui tu contraseña"
-          name="password"
-          errorLeyend="La contraseña tiene que ser de 4-16 digitos y solo puede contener numeros, letras y guion bajo"
-          regularExpresion=""
+          placeholder="password"
+          name="password1"
+          errorLeyend="La contraseña ha de ser de 4 a 12 digitos"
+          regularExpresion={expresiones.password}
+        />
+
+        <ComponenteInput
+          estado={password2}
+          cambiarEstado={cambiarPassword2}
+          type="password"
+          label="Repetir Contraseña"
+          placeholder="password2"
+          name="password2"
+          errorLeyend="Ambas contraseñas deben de ser iguales"
+        />
+
+        <ComponenteInput
+          estado={correo}
+          cambiarEstado={cambiarCorreo}
+          type="email"
+          label="Correo Electrónico"
+          placeholder="test@gmail.com"
+          name="correo"
+          errorLeyend="el correo solo puede contener letras, numeros, puntos etc"
+          regularExpresion={expresiones.correo}
+        />
+
+        <ComponenteInput
+          estado={telefono}
+          cambiarEstado={cambiarTelefono}
+          type="text"
+          label="Teléfono"
+          placeholder="123456789"
+          name="telefono"
+          errorLeyend="El telefono solo puede contener numeros y el maximo son 14 dígitos."
+          regularExpresion={expresiones.telefono}
         />
 
 
